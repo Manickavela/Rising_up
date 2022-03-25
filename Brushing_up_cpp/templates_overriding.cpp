@@ -88,4 +88,4 @@ int main()
 
     cout<<"\n\nChar Results"<<endl;
     charcalc.displayResult();                   //Bug adds the ASCII values, RECTIFIED!
-}
+}   
