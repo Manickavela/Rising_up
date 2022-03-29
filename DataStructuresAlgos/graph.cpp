@@ -21,8 +21,7 @@ class DiaGraph
             adjNode* newNode = new adjNode;
             newNode->val = value;
             newNode->cost = weight;
-         
-            newNode->next = head; 
+            newNode->next = head;
             return newNode;
         }
     
@@ -42,12 +41,13 @@ class DiaGraph
                 int start_ver = edges[i].start_ver;
                 int end_ver = edges[i].end_ver;
                 int weight = edges[i].weight;
+
                 // insert of first element
                 adjNode* newNode = getAdjListNode(end_ver, weight, head[start_ver]);
-             
+                
                 // point head pointer to new node
                 head[start_ver] = newNode;
-             }
+            }
     }
 
 };
