@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-
+#include <omp.h>
 
 
 void Print_Symtable(SymTable_t t)
@@ -51,6 +51,9 @@ int SymTable_getLength(SymTable_t oSymTable)
 
 void funct_apply(const char *k ,const void *v,const void *extra)
 {
+    assert(k != NULL);
+    assert(v != NULL);
+    assert(extra != NULL);
     printf("Key : %s, Value : %d\n",k,*(int*)v);
 }
 
@@ -58,6 +61,9 @@ void SymTable_map (SymTable_t oSymTable,
         void (*pfApply) (const char *pcKey,const void *pvValue,const void *pvExtra),const void *pvExtra)
 {
     assert(oSymTable != NULL);
+    //assert(pfApply != NULL);
+
+
     SymTable_t temp = oSymTable;
     while(temp != NULL)
     {
@@ -69,6 +75,8 @@ void SymTable_map (SymTable_t oSymTable,
 int SymTable_contains (SymTable_t oSymTable,const char *pcKey)
 {
     assert(oSymTable != NULL);
+    assert(pcKey != NULL);
+    
     while(oSymTable != NULL)
     {
         if(oSymTable->k == pcKey)
@@ -84,6 +92,9 @@ int SymTable_put(SymTable_t oSymTable,const char *pcKey,const void *pvValue)
 {
     //if(SymTable_contains(oSymTable,pcKey) == 0)
     assert(oSymTable != NULL);
+    assert(pcKey != NULL);
+    assert(pvValue != NULL);
+    
     while(oSymTable->next != NULL)
     {
         //printf("Key ");
@@ -114,6 +125,8 @@ int SymTable_put(SymTable_t oSymTable,const char *pcKey,const void *pvValue)
 void *SymTable_get (SymTable_t oSymTable, const char *pcKey)
 {
     assert(oSymTable != NULL);
+    assert(pcKey != NULL);
+    
     while(oSymTable != NULL)
     {
         if(oSymTable->k == pcKey)
@@ -128,6 +141,8 @@ void *SymTable_get (SymTable_t oSymTable, const char *pcKey)
 void *SymTable_remove (SymTable_t oSymTable,const char *pcKey)
 {
     assert(oSymTable != NULL);
+    assert(pcKey != NULL);
+    
     if(oSymTable->k == pcKey)
     {
         SymTable_t temp = oSymTable;
@@ -154,6 +169,8 @@ void *SymTable_remove (SymTable_t oSymTable,const char *pcKey)
 void *SymTable_replace (SymTable_t oSymTable,const char *pcKey,const void *pvValue)
 {
     assert(oSymTable != NULL);
+    assert(pcKey != NULL);
+    assert(pvValue != NULL);
     while(oSymTable != NULL)
     {
         if(oSymTable->k == pcKey)
