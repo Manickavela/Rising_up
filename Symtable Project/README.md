@@ -55,7 +55,7 @@ SymTable is a main data structure created and maintained by compilers in order t
 - void *SymTable_remove (SymTable_t oSymTable,const char *pcKey);
 
 
-  Retruns the pointer to Value after removing it from the oSymTable
+  Returns the pointer to Value after removing it from the oSymTable
   
 - void SymTable_map (SymTable_t oSymTable,void (*pfApply) (const char *pcKey,const void *pvValue,const void *pvExtra),const void *pvExtra);
 
