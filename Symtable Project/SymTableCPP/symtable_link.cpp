@@ -24,6 +24,11 @@ void SymTable::SymTable_setN(SymTable_t t)
     next = t;
 }
 
+SymTable_t SymTable::SymTable_getN()
+{
+    return next;
+}
+
 //Creates a new node by dynamically allocating the necessary variables
 //and initializes them accordingly 
 SymTable* SymTable::SymTable_new (void)
@@ -34,7 +39,6 @@ SymTable* SymTable::SymTable_new (void)
     t->next = NULL;
 
     t->value = malloc(sizeof(int));
-    //t -> value = (int)malloc(sizeof(int));
     if(t->value == NULL)
         return NULL;
     return t;
@@ -53,7 +57,7 @@ void SymTable::SymTable_free(SymTable_t oSymTable)
 //from oSymtable on 
 int SymTable::SymTable_getLength(SymTable_t oSymTable)
 {
-    assert(oSymTable != NULL);
+    assert((oSymTable != NULL)&&"Assertion Death");
     int count=0;
     
     while(oSymTable != NULL)
@@ -67,7 +71,6 @@ int SymTable::SymTable_getLength(SymTable_t oSymTable)
 //Sample function iused for testing the SymTable_map function
 void funct_apply(const char *k ,const void *v,const void *extra)
 {
-    //printf("Key : %s, Value : %d\n",k,*(int*)v);
     cout<<"Key : "<<k<<" Value : "<<*(int*)v<<endl;
 }
 
@@ -76,7 +79,7 @@ void funct_apply(const char *k ,const void *v,const void *extra)
 void SymTable::SymTable_map (SymTable_t oSymTable,
     void (*pfApply) (const char *pcKey,const void *pvValue,const void *pvExtra),const void *pvExtra)
 {
-    assert(oSymTable != NULL);
+    assert((oSymTable != NULL)&&"Assertion Death");
     SymTable_t temp = oSymTable;
     while(temp != NULL)
     {
@@ -89,8 +92,8 @@ void SymTable::SymTable_map (SymTable_t oSymTable,
 //traversing through the list from oSymTable
 int SymTable::SymTable_contains (SymTable_t oSymTable,const char *pcKey)
 {
-    assert(oSymTable != NULL);
-    assert(pcKey != NULL);
+    assert((oSymTable != NULL)&&"Assertion Death");
+    assert((pcKey != NULL)&&"Assertion Death");
     
     while(oSymTable != NULL)
     {
@@ -108,23 +111,21 @@ int SymTable::SymTable_contains (SymTable_t oSymTable,const char *pcKey)
 //it maintaians that there isn't any repetition on the pKey value
 int SymTable::SymTable_put(SymTable_t oSymTable,const char *pcKey,const void *pvValue)
 {
-    //if(SymTable_contains(oSymTable,pcKey) == 0)
-    assert(oSymTable != NULL);
-    assert(pcKey != NULL);
-    assert(pvValue != NULL);
+    assert((oSymTable != NULL)&&"Assertion Death");
+    assert((pcKey != NULL)&&"Assertion Death");
+    assert((pvValue != NULL)&&"Assertion Death");
     
     while(oSymTable->next != NULL)
     {
         if(oSymTable->k == pcKey)
         {
-            printf("Key value already exists in the Symbol Table");
+            cout<<"Key value already exists in the Symbol Table"<<endl;
             return 0;
         }
         oSymTable = oSymTable->next;
     }
     if(oSymTable->k == pcKey)
     {
-        //printf("Key value already exists in the Symbol Table");
         cout<<"Key value already exists in the Symbol Table"<<endl;
         return 0;
     }
@@ -143,10 +144,10 @@ int SymTable::SymTable_put(SymTable_t oSymTable,const char *pcKey,const void *pv
 
 //Searches through the entire list with pKey
 //and returns the value on finding the pKey
-void *SymTable::SymTable_get (SymTable_t oSymTable, const char *pcKey)
+void *SymTable::SymTable_get(SymTable_t oSymTable, const char *pcKey)
 {
-    assert(oSymTable != NULL);
-    assert(pcKey != NULL);
+    assert((oSymTable != NULL)&&"Assertion Death");
+    assert((pcKey != NULL)&&"Assertion Death");
     while(oSymTable->next != NULL)
     {
         if(oSymTable->k == pcKey)
@@ -155,15 +156,14 @@ void *SymTable::SymTable_get (SymTable_t oSymTable, const char *pcKey)
         }
         oSymTable = oSymTable->next;
     }
-    printf("\nOUT\n");
-    return NULL;
+    return nullptr;
 }
 
 //Removes the node wIth the key pcKey from the linked list oSymTable
 void *SymTable::SymTable_remove (SymTable_t oSymTable,const char *pcKey)
 {
-    assert(oSymTable != NULL);
-    assert(pcKey != NULL);
+    assert((oSymTable != NULL)&&"Assertion Death");
+    assert((pcKey != NULL)&&"Assertion Death");
     
     if(oSymTable->k == pcKey)
     {
@@ -193,9 +193,9 @@ void *SymTable::SymTable_remove (SymTable_t oSymTable,const char *pcKey)
 //where pcKey matches , returns NULL if it isn't available
 void *SymTable::SymTable_replace (SymTable_t oSymTable,const char *pcKey,const void *pvValue)
 {
-    assert(oSymTable != NULL);
-    assert(pcKey != NULL);
-    assert(pvValue != NULL);
+    assert((oSymTable != NULL)&&"Assertion Death");
+    assert((pcKey != NULL)&&"Assertion Death");
+    assert((pvValue != NULL)&&"Assertion Death");
     while(oSymTable != NULL)
     {
         if(oSymTable->k == pcKey)

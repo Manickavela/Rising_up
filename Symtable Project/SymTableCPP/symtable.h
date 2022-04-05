@@ -14,7 +14,8 @@ class SymTable
         void SymTable_setV(void* t);
         void SymTable_setK(char* t);
         void SymTable_setN(SymTable_t t);
-
+        SymTable_t SymTable_getN();
+        
         //functions as per SymTable requirment 
         SymTable_t SymTable_new (void);
         void SymTable_free(SymTable_t oSymTable);
