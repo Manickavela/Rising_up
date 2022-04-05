@@ -5,7 +5,7 @@ SymTable is a main data structure created and maintained by compilers in order t
 - Scope and Binding information about names
 - Information about instances like classes,names,objects,etc
 
-#Interfaces Available
+## Interfaces Available
 
 - SymTable_t SymTable_new (void);
 - void SymTable_free(SymTable_t oSymTable);
