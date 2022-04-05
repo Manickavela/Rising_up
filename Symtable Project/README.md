@@ -5,11 +5,16 @@ SymTable is a main data structure created and maintained by compilers in order t
 - Scope and Binding information about names
 - Information about instances like classes,names,objects,etc
 
-## class SymTable 
+## Class SymTable 
   Binds Key and Value together.
+  
   k        : Char*
+  
   value    : Void* 
+  
   next     : SymTable*  
+  
+  
 
 ## Interfaces Available
 
