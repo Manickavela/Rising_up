@@ -185,7 +185,7 @@ void *SymTable::SymTable_remove (SymTable_t oSymTable,const char *pcKey)
         }
         oSymTable = oSymTable->next;
     }
-    return NULL;
+    return nullptr;
 }
 
 

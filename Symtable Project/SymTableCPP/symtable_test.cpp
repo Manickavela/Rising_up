@@ -69,22 +69,18 @@ TEST_F(SymTableTest,ExpectedExceution)
     *(int*)t = 3;
     EXPECT_EQ(obj.SymTable_put(listNodes,"List Node 3",t),0); //already exists
 
-    
     EXPECT_EQ(obj.SymTable_get(singleNode,"Dummy"),nullptr);
     EXPECT_EQ(obj.SymTable_get(singleNode,"List Node 2"),nullptr);
     
-
     t = obj.SymTable_get(listNodes,"List Node 2");
     EXPECT_EQ(*(int*)t,2);
     EXPECT_EQ(obj.SymTable_get(listNodes,"dummy"),nullptr);
     EXPECT_EQ(obj.SymTable_get(singleNode,"List Node 2"),nullptr);
 
-    
     t = obj.SymTable_remove(listNodes,"List Node 5");
     EXPECT_EQ(*(int*)t,5);
     EXPECT_EQ(obj.SymTable_remove(singleNode,"List Node 5"),nullptr);
     
-
     t = operator new(sizeof(int));
     *(int*)t = 11;
     t = obj.SymTable_replace(listNodes,"List Node 1",t);
@@ -95,7 +91,6 @@ TEST_F(SymTableTest,ExpectedExceution)
     *(int*)t = 11;
     EXPECT_EQ(obj.SymTable_replace(listNodes,"dummy",t),nullptr);
     free(t);
-
 }
 
 TEST_F(SymTableTest, NullParamters)
@@ -127,7 +122,6 @@ TEST_F(SymTableTest, NullParamters)
     ASSERT_DEATH(obj.SymTable_replace(NULL,NULL,NULL),"Assertion Death");
     ASSERT_DEATH(obj.SymTable_replace(listNodes,NULL,NULL),"Assertion Death");
     ASSERT_DEATH(obj.SymTable_replace(listNodes,"List Node 1",NULL),"Assertion Death");
-
 
 }
 
