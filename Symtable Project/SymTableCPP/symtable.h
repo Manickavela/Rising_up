@@ -4,13 +4,18 @@ typedef class SymTable* SymTable_t;
 
 class SymTable 
 {
-    public : 
+    private : 
         char* k;
         void* value;
         class SymTable *next;
+    public : 
 
+        //self defined helper functions
         void SymTable_setV(void* t);
         void SymTable_setK(char* t);
+        void SymTable_setN(SymTable_t t);
+
+        //functions as per SymTable requirment 
         SymTable_t SymTable_new (void);
         void SymTable_free(SymTable_t oSymTable);
         int SymTable_getLength(SymTable_t oSymTable);

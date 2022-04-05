@@ -1,8 +1,11 @@
 #include "symtable.h"
 #include <stdio.h>
+#include <iostream>
 #include <stdlib.h>
 #include <assert.h>
 #include <omp.h>
+
+using namespace std;
 
 
 void SymTable::SymTable_setV(void* t)
@@ -10,26 +13,21 @@ void SymTable::SymTable_setV(void* t)
     value = t;
 }
 
+
 void SymTable::SymTable_setK(char* t)
 {
     k = t;
 }
 
-
-//typedef SymTable* SymTable_t;
-/*
-void SymTable::Print_Symtable(SymTable_t t)
+void SymTable::SymTable_setN(SymTable_t t)
 {
-    printf("%p\n",t->k);
-    printf("%d\n",*(int*)t->value);
-    printf("%p\n",t->next);
-}*/
+    next = t;
+}
 
+//Creates a new node by dynamically allocating the necessary variables
+//and initializes them accordingly 
 SymTable* SymTable::SymTable_new (void)
 {
-    //SymTable_t t = (Value_t)malloc(sizeof(Value));
-
-
     SymTable_t t = (SymTable_t)malloc(sizeof(struct SymTable));
     if(t == NULL)
         return NULL;
@@ -42,6 +40,8 @@ SymTable* SymTable::SymTable_new (void)
     return t;
 }
 
+//Given the node pointer it frees the alloted memory from 
+//for both SymTable node and the value pointer in it
 void SymTable::SymTable_free(SymTable_t oSymTable)
 {
     assert(oSymTable != NULL);
@@ -49,6 +49,8 @@ void SymTable::SymTable_free(SymTable_t oSymTable)
     free(oSymTable);
 }
 
+//Gets the lenght of the linked list by traversing through 
+//from oSymtable on 
 int SymTable::SymTable_getLength(SymTable_t oSymTable)
 {
     assert(oSymTable != NULL);
@@ -62,19 +64,19 @@ int SymTable::SymTable_getLength(SymTable_t oSymTable)
     return count;
 }
 
+//Sample function iused for testing the SymTable_map function
 void funct_apply(const char *k ,const void *v,const void *extra)
 {
-    /*assert(k != NULL);
-    assert(v != NULL);
-    assert(extra != NULL);*/
-    printf("Key : %s, Value : %d\n",k,*(int*)v);
+    //printf("Key : %s, Value : %d\n",k,*(int*)v);
+    cout<<"Key : "<<k<<" Value : "<<*(int*)v<<endl;
 }
 
+//SymTable_map tabes the function as parameter and
+//applies it to the linked list traversing through the node
 void SymTable::SymTable_map (SymTable_t oSymTable,
-        void (*pfApply) (const char *pcKey,const void *pvValue,const void *pvExtra),const void *pvExtra)
+    void (*pfApply) (const char *pcKey,const void *pvValue,const void *pvExtra),const void *pvExtra)
 {
     assert(oSymTable != NULL);
-    //assert(pfApply != NULL);
     SymTable_t temp = oSymTable;
     while(temp != NULL)
     {
@@ -83,6 +85,8 @@ void SymTable::SymTable_map (SymTable_t oSymTable,
     }
 }
 
+//Checks whether the pKey is available or not by 
+//traversing through the list from oSymTable
 int SymTable::SymTable_contains (SymTable_t oSymTable,const char *pcKey)
 {
     assert(oSymTable != NULL);
@@ -99,6 +103,9 @@ int SymTable::SymTable_contains (SymTable_t oSymTable,const char *pcKey)
     return 0;
 }
 
+//Takes in all the necessary info for creating a new node 
+//and appending it to the linked list 
+//it maintaians that there isn't any repetition on the pKey value
 int SymTable::SymTable_put(SymTable_t oSymTable,const char *pcKey,const void *pvValue)
 {
     //if(SymTable_contains(oSymTable,pcKey) == 0)
@@ -108,7 +115,6 @@ int SymTable::SymTable_put(SymTable_t oSymTable,const char *pcKey,const void *pv
     
     while(oSymTable->next != NULL)
     {
-        //printf("Key ");
         if(oSymTable->k == pcKey)
         {
             printf("Key value already exists in the Symbol Table");
@@ -118,7 +124,8 @@ int SymTable::SymTable_put(SymTable_t oSymTable,const char *pcKey,const void *pv
     }
     if(oSymTable->k == pcKey)
     {
-        printf("Key value already exists in the Symbol Table");
+        //printf("Key value already exists in the Symbol Table");
+        cout<<"Key value already exists in the Symbol Table"<<endl;
         return 0;
     }
     SymTable_t t = SymTable_new();
@@ -127,23 +134,19 @@ int SymTable::SymTable_put(SymTable_t oSymTable,const char *pcKey,const void *pv
         return 0;
     }
     t->k = const_cast<char*>(pcKey);
-    *(int*)t->value = *(int*)pvValue;
+    t->value = (void*)pvValue;
+    //*(int*)t->value = *(int*)pvValue;
     oSymTable->next = t;
     return 1;
-    //*(int*)t->value = 1;
     
 }
+
+//Searches through the entire list with pKey
+//and returns the value on finding the pKey
 void *SymTable::SymTable_get (SymTable_t oSymTable, const char *pcKey)
 {
     assert(oSymTable != NULL);
     assert(pcKey != NULL);
-    /*if(oSymTable != NULL)
-    {
-        if(oSymTable->k == pcKey)
-        {
-            return oSymTable->value;
-        }
-    }*/
     while(oSymTable->next != NULL)
     {
         if(oSymTable->k == pcKey)
@@ -156,6 +159,7 @@ void *SymTable::SymTable_get (SymTable_t oSymTable, const char *pcKey)
     return NULL;
 }
 
+//Removes the node wIth the key pcKey from the linked list oSymTable
 void *SymTable::SymTable_remove (SymTable_t oSymTable,const char *pcKey)
 {
     assert(oSymTable != NULL);
@@ -184,6 +188,9 @@ void *SymTable::SymTable_remove (SymTable_t oSymTable,const char *pcKey)
     return NULL;
 }
 
+
+//Replaces the Value with pvValue at the node 
+//where pcKey matches , returns NULL if it isn't available
 void *SymTable::SymTable_replace (SymTable_t oSymTable,const char *pcKey,const void *pvValue)
 {
     assert(oSymTable != NULL);
@@ -200,24 +207,4 @@ void *SymTable::SymTable_replace (SymTable_t oSymTable,const char *pcKey,const v
         oSymTable = oSymTable->next;
     }
     return NULL;
-}   
-
-
-
-//Reference code
-
-    //SymTable_t temp = (SymTable_t)malloc(sizeof(Symtable));
-    /*
-    SymTable_t temp = SymTable_new();
-    temp->opaque_val = (Value_t)malloc(sizeof(Value));
-    temp->opaque_val->val = 5;*/
-
-
-/*
-typedef struct SymTable
-{
-    char* k;
-    int value;
-    SymTable_t next;
-} Symtable;
-*/
+}

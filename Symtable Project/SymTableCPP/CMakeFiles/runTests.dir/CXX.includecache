@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mcw/Documents/Rising_up/Symtable Project/SymTableCPP/symtable.h
+
+/home/mcw/Documents/Rising_up/Symtable Project/SymTableCPP/symtable_link.cpp
+symtable.h
+/home/mcw/Documents/Rising_up/Symtable Project/SymTableCPP/symtable.h
+stdio.h
+-
+iostream
+-
+stdlib.h
+-
+assert.h
+-
+omp.h
+-
+
+/home/mcw/Documents/Rising_up/Symtable Project/SymTableCPP/symtable_test.cpp
+symtable_link.cpp
+/home/mcw/Documents/Rising_up/Symtable Project/SymTableCPP/symtable_link.cpp
+typeinfo
+-
+gtest/gtest.h
+-
+
