@@ -9,6 +9,7 @@ SymTable is a main data structure created and maintained by compilers in order t
 Class SymTable binds Key and Value together along with the.
   
   |Data Members | Data Type |
+  |------------ | --------- |
   
   |k | Char* |
   
