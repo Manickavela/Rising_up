@@ -10,11 +10,8 @@ Class SymTable binds Key and Value together along with the.
   
   |Data Members | Data Type |
   |------------ | --------- |
-  
   |k | Char* |
-  
   |value | Void* |
-  
   |next  | SymTable* | 
   
   
