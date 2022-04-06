@@ -6,7 +6,7 @@ SymTable is a main data structure created and maintained by compilers in order t
 - Information about instances like classes,names,objects,etc
 
 ## Class SymTable 
-  Binds Key and Value together.
+  Class SymTable binds Key and Value together along with the .
   
   k        : Char*
   
