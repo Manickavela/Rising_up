@@ -25,7 +25,6 @@ Below are all the available member functions from the symtable for public access
 |Return Type| Function name | About|
 |-----------| ------------- | -----|
 |SymTable_t | SymTable_new (void); | Returns an SymTable node with values initialised to NULL.|
-  
 |void |SymTable_free(SymTable_t oSymTable);| Frees the alloted memory associated woth the node oSymTable. |
 |int | SymTable_getLength(SymTable_t oSymTable); | Returns the length of the list of nodes , traversing foreward from oSymTable|
 |int | SymTable_put(SymTable_t oSymTable,const char *pcKey,const void *pvValue); |Returns 0 if it fails to append , returns 1 if successfully appended pcKey is unique in the symtable list,fails if repeats |
