@@ -30,23 +30,10 @@ Below are all the available member functions from the symtable for public access
 |int | SymTable_put(SymTable_t oSymTable,const char *pcKey,const void *pvValue); |Returns 0 if it fails to append , returns 1 if successfully appended pcKey is unique in the symtable list,fails if repeats |
 |void| *SymTable_replace(SymTable_t oSymTable,const char *pcKey,const void *pvValue);| Returns the replaced old value it replaces based the the pcKey match, with the pvValue match; |
 |int|SymTable_contains(SymTable_t oSymTable,const char *pcKey);|Returns 0 if node with pcKey is present in oSymTable ,1 if it isn't available.|
-          
-  
-- void *SymTable_get (SymTable_t oSymTable, const char *pcKey);
-
-  Returns the Value if pcKey exists in oSymTable else returns nullptr
-  
-  
-- void *SymTable_remove (SymTable_t oSymTable,const char *pcKey);
-
-
-  Returns the pointer to Value after removing it from the oSymTable
-  
-- void SymTable_map (SymTable_t oSymTable,void (*pfApply) (const char *pcKey,const void *pvValue,const void *pvExtra),const void *pvExtra);
-
-
-  funtion pfApply is applied to the oSymTable linked list, successively over each nodes one after another.
-  
+|void |*SymTable_get(SymTable_t oSymTable, const char *pcKey);| Returns the Value if pcKey exists in oSymTable else returns nullptr|
+|void |*SymTable_remove (SymTable_t oSymTable,const char *pcKey);|Returns the pointer to Value after removing it from the oSymTable|
+|void |SymTable_map(SymTable_t oSymTable,void (*pfApply) (const char *pcKey,const void *pvValue,const void *pvExtra),const void *pvExtra);| funtion pfApply is applied to the oSymTable linked list, successively over each nodes one after another.\
+ 
   
   ## Testing
   
