@@ -22,6 +22,8 @@ All the data members are under private and memberfunctions are pubilc
 
 Below are all the available member functions from the symtable for public access.
 
+|Return Type| Function name | About|
+|-----------| ------------- | -----|
 |SymTable_t | SymTable_new (void); | Returns an SymTable node with values initialised to NULL.|
   
 |void |SymTable_free(SymTable_t oSymTable);| Frees the alloted memory associated woth the node oSymTable. |
