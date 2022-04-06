@@ -32,9 +32,12 @@ Below are all the available member functions from the symtable for public access
 |int|SymTable_contains(SymTable_t oSymTable,const char *pcKey);|Returns 0 if node with pcKey is present in oSymTable ,1 if it isn't available.|
 |void |*SymTable_get(SymTable_t oSymTable, const char *pcKey);| Returns the Value if pcKey exists in oSymTable else returns nullptr|
 |void |*SymTable_remove (SymTable_t oSymTable,const char *pcKey);|Returns the pointer to Value after removing it from the oSymTable|
-|void |SymTable_map(SymTable_t oSymTable,void (*pfApply) (const char *pcKey,const void *pvValue,const void *pvExtra),const void *pvExtra);| funtion pfApply is applied to the oSymTable linked list, successively over each nodes one after another.\
+|void |SymTable_map(SymTable_t oSymTable,void (*pfApply) (const char *pcKey,const void *pvValue,const void *pvExtra),const void *pvExtra);| funtion pfApply is applied to the oSymTable linked list, successively over each nodes one after another.|
  
   
   ## Testing
   
   All the necessary test for the member funtions is availble in the symtable_test.cpp file
+  Testing is done with Gtest Framework as it makes testing more organised,independent and .
+  SymTableTest is the class defined for creating Test Fixture class. When there is multiple tests in an test suite need to share some 
+  common objects or subroutines they are put into the test fixture classes.  
