@@ -6,7 +6,8 @@ SymTable is a main data structure created and maintained by compilers in order t
 - Information about instances like classes,names,objects,etc
 
 ## Class SymTable 
-Class SymTable binds Key and Value together along with the.
+Class SymTable binds Key and Value together along with the the next variable of SymTable pointer type to keep the linked list going.
+All the data members are under private and memberfunctions are pubilc
   
   |Data Members | Data Type |
   |------------ | --------- |
@@ -16,41 +17,18 @@ Class SymTable binds Key and Value together along with the.
   
   
   
-
+ 
 ## Interfaces Available
 
-- SymTable_t SymTable_new (void);
+Below are all the available member functions from the symtable for public access.
 
-  Returns an SymTable node with values initialised to NULL.
+|SymTable_t | SymTable_new (void); | Returns an SymTable node with values initialised to NULL.|
   
-  
-- void SymTable_free(SymTable_t oSymTable);
-
-  Frees the alloted memory associated woth the node oSymTable
-  
-  
-- int SymTable_getLength(SymTable_t oSymTable);
-
-  Returns the length of the list of nodes , traversing foreward from oSymTable
-  
-  
-- int SymTable_put(SymTable_t oSymTable,const char *pcKey,const void *pvValue);
-
-  Returns 0 if it fails to append , returns 1 if successfully appended
-  pcKey is unique in the symtable list,fails if repeats
-  
-  
-  
-- void *SymTable_replace(SymTable_t oSymTable,const char *pcKey,const void *pvValue);
-  Returns the replaced old value
-  It replaces based the the pcKey match, with the pvValue match; 
-  
-  
-- int SymTable_contains (SymTable_t oSymTable,const char *pcKey);
-
-
-  Returns 0 if node with pcKey is present in oSymTable ,
-          1 if it isn't available.
+|void |SymTable_free(SymTable_t oSymTable);| Frees the alloted memory associated woth the node oSymTable. |
+|int | SymTable_getLength(SymTable_t oSymTable); | Returns the length of the list of nodes , traversing foreward from oSymTable|
+|int | SymTable_put(SymTable_t oSymTable,const char *pcKey,const void *pvValue); |Returns 0 if it fails to append , returns 1 if successfully appended pcKey is unique in the symtable list,fails if repeats |
+|void| *SymTable_replace(SymTable_t oSymTable,const char *pcKey,const void *pvValue);| Returns the replaced old value it replaces based the the pcKey match, with the pvValue match; |
+|int|SymTable_contains(SymTable_t oSymTable,const char *pcKey);|Returns 0 if node with pcKey is present in oSymTable ,1 if it isn't available.|
           
   
 - void *SymTable_get (SymTable_t oSymTable, const char *pcKey);
@@ -69,4 +47,6 @@ Class SymTable binds Key and Value together along with the.
   funtion pfApply is applied to the oSymTable linked list, successively over each nodes one after another.
   
   
+  ## Testing
   
+  All the necessary test for the member funtions is availble in the symtable_test.cpp file
