@@ -7,7 +7,7 @@
 
 using namespace std;
 
-
+//Below 4 support functions are defined for 
 void SymTable::SymTable_setV(void* t)
 {
     value = t;
